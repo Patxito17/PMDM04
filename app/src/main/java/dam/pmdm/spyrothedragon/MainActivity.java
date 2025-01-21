@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
@@ -44,15 +43,10 @@ public class MainActivity extends AppCompatActivity {
         binding.navView.setOnItemSelectedListener(this::selectedBottomMenu);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            if (destination.getId() == R.id.navigation_characters ||
-                    destination.getId() == R.id.navigation_worlds ||
-                    destination.getId() == R.id.navigation_collectibles) {
-                // Para las pantallas de los tabs, no queremos que aparezca la flecha de atrás
-                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-            } else {
-                // Si se navega a una pantalla donde se desea mostrar la flecha de atrás, habilítala
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            }
+            // Si se navega a una pantalla donde se desea mostrar la flecha de atrás, habilítala
+            getSupportActionBar().setDisplayHomeAsUpEnabled(destination.getId() != R.id.navigation_characters &&
+                    destination.getId() != R.id.navigation_worlds &&
+                    destination.getId() != R.id.navigation_collectibles);
         });
 
         ImageView diamondImage = binding.getRoot().findViewById(R.id.diamondImage);
