@@ -17,6 +17,7 @@
         style="@style/Guide.Element"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:contentDescription="@string/image"
         android:src="@drawable/bienvenido" />
 
     <TextView
@@ -31,6 +32,7 @@
         style="@style/Guide.Element"
         android:layout_width="match_parent"
         android:layout_height="120dp"
+        android:contentDescription="@string/image"
         app:srcCompat="@drawable/spyro_logo" />
 
     <TextView
@@ -44,6 +46,7 @@
         style="@style/Guide.Element"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:contentDescription="@string/image"
         android:src="@drawable/spyro_flying" />
 
     <ImageView

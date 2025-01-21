@@ -10,4 +10,5 @@
     <string name="guide_introduction_intro">Prepárate para explorar el mundo mágico de esta aplicación inspirada en…</string>
     <string name="guide_introduction_main_text">Aquí aprenderás a navegar por pestañas llenas de dragones, mundos fascinantes y montones de tesoros brillantes.\n\n¿Listo para empezar?\n\nPulsa \"Comenzar\" y deja que Spyro te lleve volando a través de esta guía interactiva.</string>
     <string name="start">Comenzar</string>
+    <string name="image">Imagen</string>
 </resources>
