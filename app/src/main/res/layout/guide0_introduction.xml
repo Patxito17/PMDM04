@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/guide0_introduction"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerVertical="true"
+    android:background="@color/purple"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/welcome"
+        style="@style/Guide.Element"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:src="@drawable/bienvenido" />
+
+    <TextView
+        android:id="@+id/intro"
+        style="@style/Guide.Element"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/guide_introduction_intro" />
+
+    <ImageView
+        android:id="@+id/logoSpyro"
+        style="@style/Guide.Element"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:srcCompat="@drawable/spyro_logo" />
+
+    <TextView
+        android:id="@+id/mainText"
+        style="@style/Guide.Element"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/guide_introduction_main_text" />
+
+    <ImageView
+        style="@style/Guide.Element"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/spyro_flying" />
+
+    <ImageView
+        android:id="@+id/diamondImage"
+        style="@style/Guide.Element"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:clickable="true"
+        android:contentDescription="@string/start"
+        android:focusable="true"
+        android:src="@drawable/start_button" />
+
+</LinearLayout>
