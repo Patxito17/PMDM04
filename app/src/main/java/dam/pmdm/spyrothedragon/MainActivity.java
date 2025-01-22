@@ -15,12 +15,16 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import java.util.Objects;
+
 import dam.pmdm.spyrothedragon.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    NavController navController = null;
+    private NavController navController = null;
+    private NavController navGuideController = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +53,22 @@ public class MainActivity extends AppCompatActivity {
                     destination.getId() != R.id.navigation_collectibles);
         });
 
+        ImageView logoSpyro = binding.getRoot().findViewById(R.id.logoSpyro);
+        logoSpyro.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_rotate_in));
+
         ImageView diamondImage = binding.getRoot().findViewById(R.id.diamondImage);
         diamondImage.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_pulse));
 
         diamondImage.setOnClickListener(v -> {
             v.clearAnimation();
-            binding.includeLayout.guide0Introduction.setVisibility(View.GONE);
-        });
+            binding.includeLayout.guide1Introduction.setVisibility(View.GONE);
+            binding.fullScreenFragmentContainer.setVisibility(View.VISIBLE);
 
-        ImageView logoSpyro = binding.getRoot().findViewById(R.id.logoSpyro);
-        logoSpyro.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_rotate_in));
+            navGuideController = NavHostFragment.findNavController(
+                    Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.fullScreenFragmentContainer))
+            );
+            navGuideController.navigate(R.id.navigation_guide_2); // Asegúrate de usar el ID correcto
+        });
 
     }
 
@@ -99,5 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
-
+    public ActivityMainBinding getBinding() {
+        return binding;
+    }
 }
