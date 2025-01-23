@@ -61,13 +61,13 @@ public class MainActivity extends AppCompatActivity {
 
         diamondImage.setOnClickListener(v -> {
             v.clearAnimation();
-            binding.includeLayout.guide1Introduction.setVisibility(View.GONE);
+            binding.includeLayout.guideIntroduction.setVisibility(View.GONE);
             binding.fullScreenFragmentContainer.setVisibility(View.VISIBLE);
 
             navGuideController = NavHostFragment.findNavController(
                     Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.fullScreenFragmentContainer))
             );
-            navGuideController.navigate(R.id.navigation_guide_2); // Asegúrate de usar el ID correcto
+            navGuideController.navigate(R.id.navigation_guide); // Asegúrate de usar el ID correcto
         });
 
     }

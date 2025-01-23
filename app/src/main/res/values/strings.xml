@@ -15,5 +15,7 @@
     <string name="guide_text_next">\nPulsa el botón resaltado para continuar (o cualquier otra parte de la pantalla).</string>
     <string name="guide_text_step3">En este apartado podrás explorar todos los mundos disponibles en el universo de Spyro.</string>
     <string name="guide_text_step4">Aquí podrás conocer y consultar cada unos de los coleccionables que pueden aparecer en el mundo de Spyro.</string>
+    <string name="guide_text_step5">Pulsando este botón podrás acceder a la información acerca de la aplicación.</string>
     <string name="skip_guide">Omitir guía</string>
+    <string name="guide_end">Finalizar guía</string>
 </resources>

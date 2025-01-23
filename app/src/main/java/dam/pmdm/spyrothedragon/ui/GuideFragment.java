@@ -14,20 +14,20 @@ import androidx.fragment.app.Fragment;
 
 import dam.pmdm.spyrothedragon.MainActivity;
 import dam.pmdm.spyrothedragon.R;
-import dam.pmdm.spyrothedragon.databinding.FragmentGuide2CharactersBinding;
+import dam.pmdm.spyrothedragon.databinding.FragmentGuideBinding;
 
-public class Guide2CharactersFragment extends Fragment {
+public class GuideFragment extends Fragment {
 
-    private FragmentGuide2CharactersBinding binding;
-    private static final String TAG = "Guide2CharactersFragment";
+    private FragmentGuideBinding binding;
+    private static final String TAG = "GuideFragment";
     private MainActivity mainActivity;
     private int clickCount = 0;
 
-    public Guide2CharactersFragment() {
+    public GuideFragment() {
     }
 
-    public static Guide2CharactersFragment newInstance() {
-        return new Guide2CharactersFragment();
+    public static GuideFragment newInstance() {
+        return new GuideFragment();
     }
 
     @Override
@@ -38,7 +38,7 @@ public class Guide2CharactersFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentGuide2CharactersBinding.inflate(inflater, container, false);
+        binding = FragmentGuideBinding.inflate(inflater, container, false);
         mainActivity = (MainActivity) getActivity();
         int statusBarHeight = getStatusBarHeight();
         RoundedRectangleView rectangleView = binding.getRoot().findViewById(R.id.rounded_rectangle);
@@ -62,6 +62,9 @@ public class Guide2CharactersFragment extends Fragment {
                     showNextStep(statusBarHeight, rectangleView, R.id.nav_collectibles);
                     break;
                 case 2: // Icono info
+                    clickCount++;
+                    binding.button.setText(R.string.guide_end);
+                    showNextStep(statusBarHeight, rectangleView, R.id.action_info);
                     break;
             }
         });
@@ -85,6 +88,7 @@ public class Guide2CharactersFragment extends Fragment {
                 binding.text.setText(getString(R.string.guide_text_step4) + getString(R.string.guide_text_next));
                 break;
             case 3: // Icono info
+                binding.text.setText(getString(R.string.guide_text_step5));
                 break;
         }
 
@@ -94,7 +98,7 @@ public class Guide2CharactersFragment extends Fragment {
 
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether(scaleX, scaleY, alpha);
-        animatorSet.setDuration(2000);
+        animatorSet.setDuration(1000);
         animatorSet.start();
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override

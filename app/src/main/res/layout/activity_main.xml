@@ -48,7 +48,7 @@
 
     <include
         android:id="@+id/includeLayout"
-        layout="@layout/guide1_introduction" />
+        layout="@layout/guide_introduction" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fullScreenFragmentContainer"
