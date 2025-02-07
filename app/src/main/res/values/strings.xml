@@ -6,16 +6,18 @@
     <string name="title_about">Acerca de</string>
     <string name="text_about">Aplicación desarrollada por \n <b>Gabriel Ortega Molina.</b></string>
     <string name="accept">Aceptar</string>
-    <string name="welcome">Bienvenido</string>
+    <string name="welcome">¡Bienvenido/a!</string>
     <string name="guide_introduction_intro">Prepárate para explorar el mundo mágico de esta aplicación inspirada en…</string>
     <string name="guide_introduction_main_text">Aquí aprenderás a navegar por pestañas llenas de dragones, mundos fascinantes y montones de tesoros brillantes.\n\n¿Listo para empezar?\n\nPulsa \"Comenzar\" y deja que Spyro te lleve volando a través de esta guía interactiva.</string>
     <string name="start">Comenzar</string>
     <string name="image">Imagen</string>
-    <string name="guide_text_step2">Aquí podrás explorar a todos los personajes del mundo de Spyro.</string>
     <string name="guide_text_next">\nPulsa el botón resaltado para continuar (o cualquier otra parte de la pantalla).</string>
+    <string name="guide_text_step2">Aquí podrás explorar a todos los personajes del mundo de Spyro.</string>
     <string name="guide_text_step3">En este apartado podrás explorar todos los mundos disponibles en el universo de Spyro.</string>
     <string name="guide_text_step4">Aquí podrás conocer y consultar cada unos de los coleccionables que pueden aparecer en el mundo de Spyro.</string>
     <string name="guide_text_step5">Pulsando este botón podrás acceder a la información acerca de la aplicación.</string>
     <string name="skip_guide">Omitir guía</string>
     <string name="guide_end">Finalizar guía</string>
+    <string name="guide_resume_main_text">¡Has completado los siguientes pasos en tu guía por la aplicación de Spyro!\n\n✅ Botón para mostrar los diferentes personajes.\n\n✅ Botón para mostrar los diferentes mundos.\n\n✅ Botón para mostrar los diferentes coleccionables.\n\n✅ Menú de información sobre la aplicación.\n\n¡Ya sabes cómo utilizar la aplicación! Pulsa comenzar para empezar a utilizarla.</string>
+    <string name="guide_resume">Resumen de la guía</string>
 </resources>

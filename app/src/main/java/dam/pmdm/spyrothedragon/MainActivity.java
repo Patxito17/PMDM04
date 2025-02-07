@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private NavController navController = null;
     private NavController navGuideController = null;
+    private boolean guideWatched;
 
 
     @Override
@@ -53,6 +54,24 @@ public class MainActivity extends AppCompatActivity {
                     destination.getId() != R.id.navigation_collectibles);
         });
 
+        guideWatched = getPreferences(MODE_PRIVATE).getBoolean("guideWatched", false);
+        // Para mostrar siempre la guía descomentar la siguiente línea
+        // guideWatched = false;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (!guideWatched) {
+            startGuide();
+            getPreferences(MODE_PRIVATE).edit().putBoolean("guideWatched", true).apply();
+        } else {
+            binding.includeLayout.guideIntroduction.setVisibility(View.GONE);
+            binding.fullScreenFragmentContainer.setVisibility(View.GONE);
+        }
+    }
+
+    private void startGuide() {
         ImageView logoSpyro = binding.getRoot().findViewById(R.id.logoSpyro);
         logoSpyro.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_rotate_in));
 
@@ -67,9 +86,10 @@ public class MainActivity extends AppCompatActivity {
             navGuideController = NavHostFragment.findNavController(
                     Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.fullScreenFragmentContainer))
             );
-            navGuideController.navigate(R.id.navigation_guide); // Asegúrate de usar el ID correcto
+            navGuideController.navigate(R.id.navigation_guide);
         });
-
+        // Se libera el espacio de memoria
+        navGuideController = null;
     }
 
     private boolean selectedBottomMenu(@NonNull MenuItem menuItem) {

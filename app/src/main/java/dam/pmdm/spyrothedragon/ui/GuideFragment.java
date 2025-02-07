@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
@@ -43,10 +44,12 @@ public class GuideFragment extends Fragment {
         int statusBarHeight = getStatusBarHeight();
         RoundedRectangleView rectangleView = binding.getRoot().findViewById(R.id.rounded_rectangle);
 
-        // Personajes
+        // Recorre los diferentes pasos de la guía
         showNextStep(statusBarHeight, rectangleView, R.id.nav_characters);
 
         binding.button.setOnClickListener(v -> {
+            // Al pulsar el botón se cierra la guía
+            closeGuide();
         });
 
         rectangleView.setOnClickListener(v -> {
@@ -66,10 +69,32 @@ public class GuideFragment extends Fragment {
                     binding.button.setText(R.string.guide_end);
                     showNextStep(statusBarHeight, rectangleView, R.id.action_info);
                     break;
+                case 3: // Resumen de la guía
+                    binding.includeLayout.guideResume.setVisibility(View.VISIBLE);
+
+                    ImageView logoSpyro = binding.getRoot().findViewById(R.id.logoSpyro);
+                    logoSpyro.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.scale_rotate_in));
+
+                    ImageView diamondImage = binding.getRoot().findViewById(R.id.diamondImage);
+                    diamondImage.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.scale_pulse));
+
+                    diamondImage.setOnClickListener(view -> {
+                        view.clearAnimation();
+                        closeGuide();
+                    });
+                    break;
             }
         });
 
         return binding.getRoot();
+    }
+
+    private void closeGuide() {
+        binding.includeLayout.guideResume.setVisibility(View.GONE);
+        mainActivity.getBinding().fullScreenFragmentContainer.setVisibility(View.GONE);
+        mainActivity.getBinding().includeLayout.guideIntroduction.setVisibility(View.GONE);
+        mainActivity.getBinding().navView.setSelectedItemId(R.id.nav_characters);
+        getParentFragmentManager().beginTransaction().remove(this).commit();
     }
 
     private void showNextStep(int statusBarHeight, RoundedRectangleView rectangleView, int idView) {
@@ -92,6 +117,7 @@ public class GuideFragment extends Fragment {
                 break;
         }
 
+        // Animación de las vistas
         ObjectAnimator scaleX = ObjectAnimator.ofFloat(binding.text, "scaleX", 0f, 1.0f);
         ObjectAnimator scaleY = ObjectAnimator.ofFloat(binding.text, "scaleY", 0f, 1.0f);
         ObjectAnimator alpha = ObjectAnimator.ofFloat(binding.button, "alpha", 0f, 1.0f);
@@ -133,6 +159,7 @@ public class GuideFragment extends Fragment {
 
     private int getStatusBarHeight() {
         int result = 0;
+        // No he encontrado una forma no obsoleta de obtener el tamaño de la barra de estado
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
             result = getResources().getDimensionPixelSize(resourceId);
