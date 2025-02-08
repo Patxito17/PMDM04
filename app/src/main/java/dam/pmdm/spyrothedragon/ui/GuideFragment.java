@@ -97,7 +97,7 @@ public class GuideFragment extends Fragment {
         binding.includeLayout.guideResume.setVisibility(View.GONE);
         mainActivity.getBinding().fullScreenFragmentContainer.setVisibility(View.GONE);
         mainActivity.getBinding().includeLayout.guideIntroduction.setVisibility(View.GONE);
-        mainActivity.getBinding().navView.setSelectedItemId(R.id.nav_characters);
+        mainActivity.getBinding().navView.setSelectedItemId(R.id.navigation_characters);
         getParentFragmentManager().beginTransaction().remove(this).commit();
     }
 
