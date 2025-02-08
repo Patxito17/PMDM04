@@ -1,5 +1,7 @@
 package dam.pmdm.spyrothedragon;
 
+import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -56,12 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
         guideWatched = getPreferences(MODE_PRIVATE).getBoolean("guideWatched", false);
         // Para mostrar siempre la guía descomentar la siguiente línea
-        // guideWatched = false;
+        guideWatched = false;
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        playSound(this, R.raw.gem_sound);
         if (!guideWatched) {
             startGuide();
             getPreferences(MODE_PRIVATE).edit().putBoolean("guideWatched", true).apply();
@@ -79,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         diamondImage.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_pulse));
 
         diamondImage.setOnClickListener(v -> {
+            playSound(this, R.raw.spyro_sheep);
             v.clearAnimation();
             binding.includeLayout.guideIntroduction.setVisibility(View.GONE);
             binding.fullScreenFragmentContainer.setVisibility(View.VISIBLE);
@@ -140,5 +144,10 @@ public class MainActivity extends AppCompatActivity {
 
     public ActivityMainBinding getBinding() {
         return binding;
+    }
+
+    public static void playSound(Context context, int soundId) {
+        MediaPlayer mediaPlayer = MediaPlayer.create(context, soundId);
+        mediaPlayer.start();
     }
 }

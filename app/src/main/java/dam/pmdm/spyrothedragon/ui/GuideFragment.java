@@ -43,12 +43,14 @@ public class GuideFragment extends Fragment {
         mainActivity = (MainActivity) getActivity();
         int statusBarHeight = getStatusBarHeight();
         RoundedRectangleView rectangleView = binding.getRoot().findViewById(R.id.rounded_rectangle);
+        MainActivity.playSound(getActivity(), R.raw.gem_sound);
 
         // Recorre los diferentes pasos de la guía
         showNextStep(statusBarHeight, rectangleView, R.id.nav_characters);
 
         binding.button.setOnClickListener(v -> {
             // Al pulsar el botón se cierra la guía
+            MainActivity.playSound(getActivity(), R.raw.spyro_sheep);
             closeGuide();
         });
 
@@ -70,6 +72,7 @@ public class GuideFragment extends Fragment {
                     showNextStep(statusBarHeight, rectangleView, R.id.action_info);
                     break;
                 case 3: // Resumen de la guía
+                    MainActivity.playSound(getActivity(), R.raw.gem_sound);
                     binding.includeLayout.guideResume.setVisibility(View.VISIBLE);
 
                     ImageView logoSpyro = binding.getRoot().findViewById(R.id.logoSpyro);
@@ -79,6 +82,7 @@ public class GuideFragment extends Fragment {
                     diamondImage.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.scale_pulse));
 
                     diamondImage.setOnClickListener(view -> {
+                        MainActivity.playSound(getActivity(), R.raw.spyro_3_sign);
                         view.clearAnimation();
                         closeGuide();
                     });
@@ -98,6 +102,8 @@ public class GuideFragment extends Fragment {
     }
 
     private void showNextStep(int statusBarHeight, RoundedRectangleView rectangleView, int idView) {
+        MainActivity.playSound(getActivity(), R.raw.gem_sound);
+
         if (rectangleView.getAnimation() != null && rectangleView.getAnimation().isInitialized()) {
             rectangleView.getAnimation().cancel();
         }
