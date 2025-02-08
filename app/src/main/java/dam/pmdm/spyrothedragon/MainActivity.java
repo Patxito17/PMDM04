@@ -94,11 +94,20 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean selectedBottomMenu(@NonNull MenuItem menuItem) {
         if (menuItem.getItemId() == R.id.nav_characters)
-            navController.navigate(R.id.navigation_characters);
+            if (Objects.requireNonNull(navController.getCurrentDestination()).getId() == R.id.navigation_worlds)
+                navController.navigate(R.id.action_navigation_worlds_to_navigation_characters);
+            else
+                navController.navigate(R.id.action_navigation_collectibles_to_navigation_characters);
         else if (menuItem.getItemId() == R.id.nav_worlds)
-            navController.navigate(R.id.navigation_worlds);
-        else
-            navController.navigate(R.id.navigation_collectibles);
+            if (Objects.requireNonNull(navController.getCurrentDestination()).getId() == R.id.navigation_characters)
+                navController.navigate(R.id.action_navigation_characters_to_navigation_worlds);
+            else
+                navController.navigate(R.id.action_navigation_collectibles_to_navigation_worlds);
+        else if (menuItem.getItemId() == R.id.nav_collectibles)
+            if (Objects.requireNonNull(navController.getCurrentDestination()).getId() == R.id.navigation_characters)
+                navController.navigate(R.id.action_navigation_characters_to_navigation_collectibles);
+            else
+                navController.navigate(R.id.action_navigation_worlds_to_navigation_collectibles);
         return true;
 
     }
