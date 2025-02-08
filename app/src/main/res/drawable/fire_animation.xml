@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/flame1"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/flame2"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/flame3"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/flame4"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/flame5"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/flame6"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/flame7"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/flame9"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/flame10"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/flame11"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/flame12"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/flame13"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/flame14"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/flame15"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/flame16"
+        android:duration="200" />
+</animation-list>
