@@ -57,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         guideWatched = getPreferences(MODE_PRIVATE).getBoolean("guideWatched", false);
-        // Para mostrar siempre la guía descomentar la siguiente línea
-        guideWatched = false;
     }
 
     @Override
