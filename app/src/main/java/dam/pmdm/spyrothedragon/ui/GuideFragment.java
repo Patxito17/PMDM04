@@ -43,7 +43,6 @@ public class GuideFragment extends Fragment {
         mainActivity = (MainActivity) getActivity();
         int statusBarHeight = getStatusBarHeight();
         RoundedRectangleView rectangleView = binding.getRoot().findViewById(R.id.rounded_rectangle);
-        MainActivity.playSound(getActivity(), R.raw.gem_sound);
 
         // Recorre los diferentes pasos de la guía
         showNextStep(statusBarHeight, rectangleView, R.id.nav_characters);
