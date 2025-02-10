@@ -102,13 +102,11 @@ public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.Ch
 
         TextView nameTextView;
         ImageView imageImageView;
-        ImageView fireImageView;
 
         public CharactersViewHolder(View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.name);
             imageImageView = itemView.findViewById(R.id.image);
-            fireImageView = itemView.findViewById(R.id.fire_animation);
         }
     }
 }

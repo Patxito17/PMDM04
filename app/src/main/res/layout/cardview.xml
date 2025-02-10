@@ -36,14 +36,5 @@
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
-        <ImageView
-            android:id="@+id/fire_animation"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="10dp"
-            android:src="@drawable/fire_animation"
-            android:visibility="gone" />
-
     </LinearLayout>
 </androidx.cardview.widget.CardView>
