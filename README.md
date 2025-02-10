@@ -2,7 +2,7 @@
 
 ## Introducción
 
-**Spyro The Dragon** es una aplicación móvil diseñada para explorar el universo del famoso dragón Spyro, ofreciendo a los usuarios una experiencia interactiva y visualmente atractiva. La aplicación incluye una guía de inicio interactiva que presenta las principales funcionalidades de la app, así como Easter Eggs ocultos que añaden un toque de sorpresa y diversión. El objetivo es mejorar la experiencia del usuario mediante el uso de animaciones, sonidos y elementos gráficos inspirados en el mundo de Spyro.
+**Spyro The Dragon** es una aplicación móvil diseñada para explorar el universo del famoso dragón Spyro, ofreciendo a los usuarios una experiencia interactiva y visualmente atractiva. La aplicación incluye una guía de inicio interactiva que presenta las principales funcionalidades de la app, así como dos Easter Eggs ocultos. El objetivo es mejorar la experiencia del usuario mediante el uso de animaciones, sonidos y elementos gráficos inspirados en el mundo de Spyro.
 
 ---
 
@@ -73,7 +73,7 @@ cd PMDM03
 
 ## Conclusiones del desarrollador
 
-El desarrollo de **Spyro The Dragon** ha sido una experiencia enriquecedora, permitiéndome explorar el uso de animaciones, sonidos y elementos gráficos para crear una aplicación más atractiva y funcional. La integración de una guía de inicio interactiva y dos Easter Eggs ha añadido un toque de creatividad y diversión, mejorando la experiencia del usuario. Este proyecto ha sido una buena oportunidad para trabajar el diseño de interfaces y la implementación de funcionalidades interactivas en aplicaciones Android.
+El desarrollo de **Spyro The Dragon** ha sido una experiencia enriquecedora, permitiéndome explorar el uso de animaciones, sonidos y elementos gráficos para crear una aplicación bonita y funcional. Este proyecto ha sido una buena oportunidad para trabajar el diseño de interfaces y la implementación de funcionalidades interactivas en aplicaciones Android.
 
 ## Capturas de pantalla
 
