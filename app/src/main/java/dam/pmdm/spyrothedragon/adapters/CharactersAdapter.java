@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.Ch
         this.list = charactersList;
     }
 
+    @NonNull
     @Override
     public CharactersViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview, parent, false);
@@ -40,53 +42,50 @@ public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.Ch
         holder.imageImageView.setImageResource(imageResId);
 
         if (character.getName().equals("Spyro")) {
-            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    ViewGroup parent = (ViewGroup) holder.itemView;
+            holder.itemView.setOnLongClickListener(view -> {
+                ViewGroup parent = (ViewGroup) holder.itemView;
 
-                    // Eliminar fuego/s anterior si está activado
-                    for (int i = 0; i < parent.getChildCount(); i++) {
-                        View child = parent.getChildAt(i);
-                        if (child instanceof FireAnimationView) {
-                            parent.removeView(child);
-                        }
+                // Eliminar fuego/s anterior si está activado
+                for (int i = 0; i < parent.getChildCount(); i++) {
+                    View child = parent.getChildAt(i);
+                    if (child instanceof FireAnimationView) {
+                        parent.removeView(child);
                     }
-
-                    // Crea la instancia del fuego
-                    FireAnimationView fireAnimationView = new FireAnimationView(holder.itemView.getContext());
-                    fireAnimationView.setId(View.generateViewId());
-
-                    // Tamaño del fuego
-                    int fireWidth = holder.imageImageView.getWidth() / 2;
-                    int fireHeight = holder.imageImageView.getHeight() / 3;
-
-                    fireAnimationView.setLayoutParams(new ViewGroup.LayoutParams(fireWidth, fireHeight));
-
-                    // Posicionar el fuego
-                    float mouthOffsetX = holder.imageImageView.getWidth() * 0.29f;
-                    float mouthOffsetY = holder.imageImageView.getHeight() * 0.7f;
-
-                    fireAnimationView.setX(holder.imageImageView.getX() + mouthOffsetX);
-                    fireAnimationView.setY(holder.imageImageView.getY() + mouthOffsetY);
-
-                    parent.addView(fireAnimationView);
-
-                    // Rotar 180º el fuego
-                    fireAnimationView.setRotation(180f);
-
-                    // Iniciar la animación del fuego
-                    MainActivity.playSound(holder.itemView.getContext(), R.raw.fire_sound);
-                    fireAnimationView.startAnimation();
-
-                    // Avisar de activación del Easter Egg
-                    Toast.makeText(holder.itemView.getContext(), "Easter Egg activado", Toast.LENGTH_SHORT).show();
-
-                    // Ocultar después de 3 segundos
-                    fireAnimationView.postDelayed(() -> parent.removeView(fireAnimationView), 3000);
-
-                    return true;
                 }
+
+                // Crea la instancia del fuego
+                FireAnimationView fireAnimationView = new FireAnimationView(holder.itemView.getContext());
+                fireAnimationView.setId(View.generateViewId());
+
+                // Tamaño del fuego
+                int fireWidth = holder.imageImageView.getWidth() / 2;
+                int fireHeight = holder.imageImageView.getHeight() / 3;
+
+                fireAnimationView.setLayoutParams(new ViewGroup.LayoutParams(fireWidth, fireHeight));
+
+                // Posicionar el fuego
+                float mouthOffsetX = holder.imageImageView.getWidth() * 0.29f;
+                float mouthOffsetY = holder.imageImageView.getHeight() * 0.7f;
+
+                fireAnimationView.setX(holder.imageImageView.getX() + mouthOffsetX);
+                fireAnimationView.setY(holder.imageImageView.getY() + mouthOffsetY);
+
+                parent.addView(fireAnimationView);
+
+                // Rotar 180º el fuego
+                fireAnimationView.setRotation(180f);
+
+                // Iniciar la animación del fuego
+                MainActivity.playSound(holder.itemView.getContext(), R.raw.fire_sound);
+                fireAnimationView.startAnimation();
+
+                // Avisar de activación del Easter Egg
+                Toast.makeText(holder.itemView.getContext(), "Easter Egg activado", Toast.LENGTH_SHORT).show();
+
+                // Ocultar después de 3 segundos
+                fireAnimationView.postDelayed(() -> parent.removeView(fireAnimationView), 3000);
+
+                return true;
             });
         }
     }

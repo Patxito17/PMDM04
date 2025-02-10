@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Configurar Toolbar
         setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         Fragment navHostFragment = getSupportFragmentManager().findFragmentById(R.id.navHostFragment);
         if (navHostFragment != null) {

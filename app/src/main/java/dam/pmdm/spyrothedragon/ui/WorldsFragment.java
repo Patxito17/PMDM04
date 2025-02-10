@@ -63,7 +63,7 @@ public class WorldsFragment extends Fragment {
             World currentWorld = null;
 
             while (eventType != XmlPullParser.END_DOCUMENT) {
-                String tagName = null;
+                String tagName;
 
                 switch (eventType) {
                     case XmlPullParser.START_TAG:

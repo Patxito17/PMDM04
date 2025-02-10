@@ -11,7 +11,10 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import java.util.Objects;
 
 import dam.pmdm.spyrothedragon.MainActivity;
 import dam.pmdm.spyrothedragon.R;
@@ -27,17 +30,13 @@ public class GuideFragment extends Fragment {
     public GuideFragment() {
     }
 
-    public static GuideFragment newInstance() {
-        return new GuideFragment();
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentGuideBinding.inflate(inflater, container, false);
         mainActivity = (MainActivity) getActivity();
@@ -110,13 +109,19 @@ public class GuideFragment extends Fragment {
         rectangleView.setVisibility(View.INVISIBLE);
         switch (clickCount) {
             case 0: // Personajes
-                binding.text.setText(getString(R.string.guide_text_step2) + getString(R.string.guide_text_next));
+                binding.text.setText(getString(R.string.guide_text_combined,
+                        getString(R.string.guide_text_step2),
+                        getString(R.string.guide_text_next)));
                 break;
             case 1: // Mundos
-                binding.text.setText(getString(R.string.guide_text_step3) + getString(R.string.guide_text_next));
+                binding.text.setText(getString(R.string.guide_text_combined,
+                        getString(R.string.guide_text_step3),
+                        getString(R.string.guide_text_next)));
                 break;
             case 2: // Coleccionables
-                binding.text.setText(getString(R.string.guide_text_step4) + getString(R.string.guide_text_next));
+                binding.text.setText(getString(R.string.guide_text_combined,
+                        getString(R.string.guide_text_step4),
+                        getString(R.string.guide_text_next)));
                 break;
             case 3: // Icono info
                 binding.text.setText(getString(R.string.guide_text_step5));
@@ -144,7 +149,7 @@ public class GuideFragment extends Fragment {
 
     private void showRectangleStep(int statusBarHeight, RoundedRectangleView rectangleView, int idView) {
         // Obtener coordenadas y tamaño del elemento a resaltar
-        View targetView = getActivity().findViewById(idView);
+        View targetView = requireActivity().findViewById(idView);
         int[] location = new int[2];
         targetView.getLocationOnScreen(location);
         float targetX = location[0];
@@ -165,7 +170,6 @@ public class GuideFragment extends Fragment {
 
     private int getStatusBarHeight() {
         int result = 0;
-        // No he encontrado una forma no obsoleta de obtener el tamaño de la barra de estado
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
             result = getResources().getDimensionPixelSize(resourceId);

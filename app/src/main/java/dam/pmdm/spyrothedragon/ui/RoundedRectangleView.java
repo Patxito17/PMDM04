@@ -7,6 +7,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import dam.pmdm.spyrothedragon.R;
@@ -74,7 +75,7 @@ public class RoundedRectangleView extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawRoundRect(rect, cornerRadius, cornerRadius, paint);
         canvas.drawRoundRect(rect, cornerRadius, cornerRadius, borderPaint);

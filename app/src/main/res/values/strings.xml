@@ -20,4 +20,6 @@
     <string name="guide_end">Finalizar guía</string>
     <string name="guide_resume_main_text">¡Has completado los siguientes pasos en tu guía por la aplicación de Spyro!\n\n✅ Botón para mostrar los diferentes personajes.\n\n✅ Botón para mostrar los diferentes mundos.\n\n✅ Botón para mostrar los diferentes coleccionables.\n\n✅ Menú de información sobre la aplicación.\n\n¡Ya sabes cómo utilizar la aplicación! Pulsa comenzar para empezar a utilizarla.</string>
     <string name="guide_resume">Resumen de la guía</string>
+
+    <string name="guide_text_combined">%1$s %2$s</string>
 </resources>

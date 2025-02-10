@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class CollectiblesAdapter extends RecyclerView.Adapter<CollectiblesAdapte
         this.list = collectibleList;
     }
 
+    @NonNull
     @Override
     public CollectiblesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview, parent, false);
@@ -55,50 +57,41 @@ public class CollectiblesAdapter extends RecyclerView.Adapter<CollectiblesAdapte
                     binding.fullscreenVideoView.setVisibility(View.VISIBLE);
 
                     // Reproducir el video
-                    binding.videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                        @Override
-                        public void onPrepared(MediaPlayer mp) {
-                            // Vídeo con el máximo tamaño en función de la pantalla
-                            int videoWidth = mp.getVideoWidth();
-                            int videoHeight = mp.getVideoHeight();
-                            float videoProportion = (float) videoWidth / (float) videoHeight;
+                    binding.videoView.setOnPreparedListener(mp -> {
+                        // Vídeo con el máximo tamaño en función de la pantalla
+                        int videoWidth = mp.getVideoWidth();
+                        int videoHeight = mp.getVideoHeight();
+                        float videoProportion = (float) videoWidth / (float) videoHeight;
 
-                            int screenWidth = binding.getRoot().getWidth();
-                            int screenHeight = binding.getRoot().getHeight();
-                            float screenProportion = (float) screenWidth / (float) screenHeight;
+                        int screenWidth = binding.getRoot().getWidth();
+                        int screenHeight = binding.getRoot().getHeight();
+                        float screenProportion = (float) screenWidth / (float) screenHeight;
 
-                            ViewGroup.LayoutParams layoutParams = binding.videoView.getLayoutParams();
+                        ViewGroup.LayoutParams layoutParams = binding.videoView.getLayoutParams();
 
-                            if (videoProportion > screenProportion) {
-                                layoutParams.width = screenWidth;
-                                layoutParams.height = (int) (screenWidth / videoProportion);
-                            } else {
-                                layoutParams.width = (int) (screenHeight * videoProportion);
-                                layoutParams.height = screenHeight;
-                            }
-
-                            binding.videoView.setLayoutParams(layoutParams);
-
-                            mp.start();
+                        if (videoProportion > screenProportion) {
+                            layoutParams.width = screenWidth;
+                            layoutParams.height = (int) (screenWidth / videoProportion);
+                        } else {
+                            layoutParams.width = (int) (screenHeight * videoProportion);
+                            layoutParams.height = screenHeight;
                         }
+
+                        binding.videoView.setLayoutParams(layoutParams);
+
+                        mp.start();
                     });
 
                     // Manejar el clic en el video para cerrarlo
-                    binding.videoView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            binding.videoView.stopPlayback();
-                            binding.fullscreenVideoView.setVisibility(View.GONE);
-                        }
+                    binding.videoView.setOnClickListener(v -> {
+                        binding.videoView.stopPlayback();
+                        binding.fullscreenVideoView.setVisibility(View.GONE);
                     });
 
                     // Manejar el final del video para cerrarlo
-                    binding.videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                        @Override
-                        public void onCompletion(MediaPlayer mp) {
-                            binding.videoView.stopPlayback();
-                            binding.fullscreenVideoView.setVisibility(View.GONE);
-                        }
+                    binding.videoView.setOnCompletionListener(mp -> {
+                        binding.videoView.stopPlayback();
+                        binding.fullscreenVideoView.setVisibility(View.GONE);
                     });
 
                     gemsClicked = 0;
