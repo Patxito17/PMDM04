@@ -73,7 +73,7 @@ cd PMDM03
 
 ## Conclusiones del desarrollador
 
-El desarrollo de **Spyro The Dragon** ha sido una experiencia enriquecedora, permitiéndome explorar el uso de animaciones, sonidos y elementos gráficos para crear una aplicación bonita y funcional. Este proyecto ha sido una buena oportunidad para trabajar el diseño de interfaces y la implementación de funcionalidades interactivas en aplicaciones Android.
+El desarrollo de **Spyro The Dragon** ha sido una experiencia enriquecedora, permitiéndome explorar el uso de animaciones, sonidos y elementos gráficos para crear una aplicación dinámica y funcional. Este proyecto ha sido una buena oportunidad para trabajar el diseño de interfaces y la implementación de funcionalidades interactivas en aplicaciones Android.
 
 ## Capturas de pantalla
 
