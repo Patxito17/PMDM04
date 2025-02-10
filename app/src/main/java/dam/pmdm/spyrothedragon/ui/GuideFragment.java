@@ -14,8 +14,6 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import java.util.Objects;
-
 import dam.pmdm.spyrothedragon.MainActivity;
 import dam.pmdm.spyrothedragon.R;
 import dam.pmdm.spyrothedragon.databinding.FragmentGuideBinding;
@@ -23,7 +21,6 @@ import dam.pmdm.spyrothedragon.databinding.FragmentGuideBinding;
 public class GuideFragment extends Fragment {
 
     private FragmentGuideBinding binding;
-    private static final String TAG = "GuideFragment";
     private MainActivity mainActivity;
     private int clickCount = 0;
 

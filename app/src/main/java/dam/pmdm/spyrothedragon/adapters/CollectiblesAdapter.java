@@ -1,6 +1,5 @@
 package dam.pmdm.spyrothedragon.adapters;
 
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;

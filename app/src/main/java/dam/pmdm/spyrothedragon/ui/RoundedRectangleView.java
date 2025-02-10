@@ -48,27 +48,6 @@ public class RoundedRectangleView extends View {
         cornerRadius = 25f; // Radio de los bordes redondeados por defecto
     }
 
-    public void setRectangleColor(int color) {
-        paint.setColor(color);
-        invalidate(); // Redibujar la vista
-    }
-
-    public void setBorderColor(int color) {
-        borderPaint.setColor(color);
-        invalidate(); // Redibujar la vista
-    }
-
-    public void setBorderWidth(float width) {
-        borderWidth = width;
-        borderPaint.setStrokeWidth(borderWidth);
-        invalidate();
-    }
-
-    public void setCornerRadius(float radius) {
-        cornerRadius = radius;
-        invalidate();
-    }
-
     public void setRectangleBounds(float left, float top, float right, float bottom) {
         rect.set(left, top, right, bottom);
         invalidate();
