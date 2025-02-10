@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import dam.pmdm.spyrothedragon.MainActivity;
 import dam.pmdm.spyrothedragon.R;
 import dam.pmdm.spyrothedragon.models.Character;
 import dam.pmdm.spyrothedragon.ui.FireAnimationView;
@@ -71,15 +72,12 @@ public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.Ch
 
                     parent.addView(fireAnimationView);
 
-                    // Rotar 180º cada fuego
+                    // Rotar 180º el fuego
                     fireAnimationView.setRotation(180f);
 
                     // Iniciar la animación del fuego
+                    MainActivity.playSound(holder.itemView.getContext(), R.raw.fire_sound);
                     fireAnimationView.startAnimation();
-
-                    // Animar hacia abajo
-                    fireAnimationView.animate().translationYBy(25).setDuration(3000).start();
-                    fireAnimationView.animate().alpha(0.9f).setDuration(3000).start();
 
                     // Avisar de activación del Easter Egg
                     Toast.makeText(holder.itemView.getContext(), "Easter Egg activado", Toast.LENGTH_SHORT).show();
