@@ -17,7 +17,11 @@
         <item name="android:padding">8dp</item>
         <item name="android:gravity">start</item>
         <item name="android:layout_margin">8dp</item>
+    </style>
 
+    <style name="Guide.Button" parent="Guide.Element">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textStyle">italic</item>
     </style>
 
 </resources>
