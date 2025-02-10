@@ -82,10 +82,20 @@ public class MainActivity extends AppCompatActivity {
         diamondImage.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_pulse));
 
         diamondImage.setOnClickListener(v -> {
-            playSound(this, R.raw.spyro_sheep);
+            playSound(this, R.raw.gem_sound);
             v.clearAnimation();
-            binding.includeLayout.guideIntroduction.setVisibility(View.GONE);
-            binding.fullScreenFragmentContainer.setVisibility(View.VISIBLE);
+
+            binding.includeLayout.guideIntroduction.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_out_left));
+
+            // Esperar a que termine la animación antes de ocultar la vista
+            binding.includeLayout.guideIntroduction.postDelayed(() ->
+                    binding.includeLayout.guideIntroduction.setVisibility(View.GONE), 400);
+
+            binding.fullScreenFragmentContainer.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_right));
+
+            // Esperar a que termine la animación antes de mostrar la vista
+            binding.fullScreenFragmentContainer.postDelayed(() ->
+                    binding.fullScreenFragmentContainer.setVisibility(View.VISIBLE), 400);
 
             navGuideController = NavHostFragment.findNavController(
                     Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.fullScreenFragmentContainer))

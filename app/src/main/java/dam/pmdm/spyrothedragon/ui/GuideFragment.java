@@ -38,54 +38,69 @@ public class GuideFragment extends Fragment {
         binding = FragmentGuideBinding.inflate(inflater, container, false);
         mainActivity = (MainActivity) getActivity();
         int statusBarHeight = getStatusBarHeight();
-        RoundedRectangleView rectangleView = binding.getRoot().findViewById(R.id.rounded_rectangle);
+        RoundedRectangleView rectangleView = binding.roundedRectangle;
 
         // Recorre los diferentes pasos de la guía
         showNextStep(statusBarHeight, rectangleView, R.id.nav_characters);
 
-        binding.button.setOnClickListener(v -> {
+        binding.buttonSkipGuide.setOnClickListener(v -> {
             // Al pulsar el botón se cierra la guía
             MainActivity.playSound(getActivity(), R.raw.spyro_sheep);
             closeGuide();
         });
 
         rectangleView.setOnClickListener(v -> {
-            switch (clickCount) {
-                case 0: // Mundos
-                    clickCount++;
-                    mainActivity.getBinding().navView.setSelectedItemId(R.id.nav_worlds);
-                    showNextStep(statusBarHeight, rectangleView, R.id.nav_worlds);
-                    break;
-                case 1: // Coleccionables
-                    clickCount++;
-                    mainActivity.getBinding().navView.setSelectedItemId(R.id.nav_collectibles);
-                    showNextStep(statusBarHeight, rectangleView, R.id.nav_collectibles);
-                    break;
-                case 2: // Icono info
-                    clickCount++;
-                    binding.button.setText(R.string.guide_end);
-                    showNextStep(statusBarHeight, rectangleView, R.id.action_info);
-                    break;
-                case 3: // Resumen de la guía
-                    MainActivity.playSound(getActivity(), R.raw.gem_sound);
-                    binding.includeLayout.guideResume.setVisibility(View.VISIBLE);
+            nextStep(statusBarHeight, rectangleView);
+        });
 
-                    ImageView logoSpyro = binding.getRoot().findViewById(R.id.logoSpyro);
-                    logoSpyro.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.scale_rotate_in));
-
-                    ImageView diamondImage = binding.getRoot().findViewById(R.id.diamondImage);
-                    diamondImage.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.scale_pulse));
-
-                    diamondImage.setOnClickListener(view -> {
-                        MainActivity.playSound(getActivity(), R.raw.spyro_3_sign);
-                        view.clearAnimation();
-                        closeGuide();
-                    });
-                    break;
-            }
+        binding.buttonNextStep.setOnClickListener(v -> {
+            nextStep(statusBarHeight, rectangleView);
         });
 
         return binding.getRoot();
+    }
+
+    private void nextStep(int statusBarHeight, RoundedRectangleView rectangleView) {
+        clickCount++;
+        switch (clickCount) {
+            case 1: // Mundos
+                showNextStep(statusBarHeight, rectangleView, R.id.nav_worlds);
+                mainActivity.getBinding().navView.setSelectedItemId(R.id.nav_worlds);
+                break;
+            case 2: // Coleccionables
+                showNextStep(statusBarHeight, rectangleView, R.id.nav_collectibles);
+                mainActivity.getBinding().navView.setSelectedItemId(R.id.nav_collectibles);
+                break;
+            case 3: // Icono info
+                showNextStep(statusBarHeight, rectangleView, R.id.action_info);
+                binding.buttonNextStep.setText(R.string.guide_end);
+                break;
+            case 4: // Resumen de la guía
+                // Parar la animación del rectángulo si aun está activa
+                if (rectangleView.getAnimation() != null && rectangleView.getAnimation().isInitialized()) {
+                    rectangleView.getAnimation().cancel();
+                }
+
+                // Ocultar el rectángulo
+                rectangleView.setVisibility(View.GONE);
+
+                binding.includeLayout.guideResume.setVisibility(View.VISIBLE);
+
+                ImageView logoSpyro = binding.getRoot().findViewById(R.id.logoSpyro);
+                logoSpyro.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.scale_rotate_in));
+
+                ImageView diamondImage = binding.getRoot().findViewById(R.id.diamondImage);
+                diamondImage.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.scale_pulse));
+
+                diamondImage.setOnClickListener(view -> {
+                    MainActivity.playSound(getActivity(), R.raw.spyro_3_sign);
+                    view.clearAnimation();
+                    closeGuide();
+                });
+                break;
+        }
+
+        MainActivity.playSound(getActivity(), R.raw.gem_sound);
     }
 
     private void closeGuide() {
@@ -98,12 +113,10 @@ public class GuideFragment extends Fragment {
     }
 
     private void showNextStep(int statusBarHeight, RoundedRectangleView rectangleView, int idView) {
-        MainActivity.playSound(getActivity(), R.raw.gem_sound);
-
-        if (rectangleView.getAnimation() != null && rectangleView.getAnimation().isInitialized()) {
+        if (rectangleView.getAnimation() != null && rectangleView.getAnimation().isInitialized())
             rectangleView.getAnimation().cancel();
-        }
         rectangleView.setVisibility(View.INVISIBLE);
+
         switch (clickCount) {
             case 0: // Personajes
                 binding.text.setText(getString(R.string.guide_text_combined,
@@ -128,20 +141,23 @@ public class GuideFragment extends Fragment {
         // Animación de las vistas
         ObjectAnimator scaleX = ObjectAnimator.ofFloat(binding.text, "scaleX", 0f, 1.0f);
         ObjectAnimator scaleY = ObjectAnimator.ofFloat(binding.text, "scaleY", 0f, 1.0f);
-        ObjectAnimator alpha = ObjectAnimator.ofFloat(binding.button, "alpha", 0f, 1.0f);
+        ObjectAnimator alpha = ObjectAnimator.ofFloat(binding.buttonSkipGuide, "alpha", 0f, 1.0f);
+        ObjectAnimator alpha2 = ObjectAnimator.ofFloat(binding.buttonNextStep, "alpha", 0f, 1.0f);
 
         AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(scaleX, scaleY, alpha);
+        animatorSet.playTogether(scaleX, scaleY, alpha, alpha2);
         animatorSet.setDuration(1000);
+
         animatorSet.start();
+
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                rectangleView.setVisibility(View.VISIBLE);
                 showRectangleStep(statusBarHeight, rectangleView, idView);
             }
         });
+
     }
 
     private void showRectangleStep(int statusBarHeight, RoundedRectangleView rectangleView, int idView) {
@@ -160,6 +176,8 @@ public class GuideFragment extends Fragment {
 
         // Actualizar las propiedades de la vista en función del elemento a resaltar
         rectangleView.setRectangleBounds(targetX, targetY - statusBarHeight, right, bottom);
+
+        rectangleView.setVisibility(View.VISIBLE);
 
         // Animación de resaltado
         rectangleView.setAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in));

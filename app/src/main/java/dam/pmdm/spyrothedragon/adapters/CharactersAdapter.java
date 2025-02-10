@@ -80,7 +80,7 @@ public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.Ch
                 fireAnimationView.startAnimation();
 
                 // Avisar de activación del Easter Egg
-                Toast.makeText(holder.itemView.getContext(), "Easter Egg activado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(holder.itemView.getContext(), holder.itemView.getResources().getString(R.string.easter_egg_activated), Toast.LENGTH_SHORT).show();
 
                 // Ocultar después de 3 segundos
                 fireAnimationView.postDelayed(() -> {

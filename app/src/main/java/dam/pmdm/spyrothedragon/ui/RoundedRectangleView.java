@@ -49,7 +49,8 @@ public class RoundedRectangleView extends View {
     }
 
     public void setRectangleBounds(float left, float top, float right, float bottom) {
-        rect.set(left, top, right, bottom);
+        rect.set(0, 0, right - left, bottom - top);
+        layout((int) left, (int) top, (int) right, (int) bottom);
         invalidate();
     }
 

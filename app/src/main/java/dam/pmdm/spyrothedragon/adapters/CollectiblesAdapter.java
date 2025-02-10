@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -79,6 +80,9 @@ public class CollectiblesAdapter extends RecyclerView.Adapter<CollectiblesAdapte
                         binding.videoView.setLayoutParams(layoutParams);
 
                         mp.start();
+
+                        // Avisar de activación del Easter Egg
+                        Toast.makeText(holder.itemView.getContext(), holder.itemView.getResources().getString(R.string.easter_egg_activated), Toast.LENGTH_SHORT).show();
                     });
 
                     // Manejar el clic en el video para cerrarlo

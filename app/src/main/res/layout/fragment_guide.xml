@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment_guide"
+    android:clickable="true"
     tools:context=".ui.GuideFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,34 +20,46 @@
             android:layout_gravity="center"
             android:background="@color/orange"
             android:padding="20dp"
-            app:layout_constraintBottom_toTopOf="@id/button"
+            app:layout_constraintBottom_toTopOf="@id/button_skip_guide"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button_skip_guide"
             style="@style/Guide.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/skip_guide"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button_next_step"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <dam.pmdm.spyrothedragon.ui.RoundedRectangleView
-            android:id="@+id/rounded_rectangle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:focusable="true"
-            android:visibility="gone" />
+        <Button
+            android:id="@+id/button_next_step"
+            style="@style/Guide.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/next_step_button"
+            app:layout_constraintStart_toEndOf="@id/button_skip_guide"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include
         android:id="@+id/includeLayout"
         layout="@layout/guide_resume"
+        android:visibility="gone" />
+
+    <dam.pmdm.spyrothedragon.ui.RoundedRectangleView
+        android:id="@+id/rounded_rectangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
         android:visibility="gone" />
 
 </FrameLayout>
