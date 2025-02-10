@@ -90,4 +90,4 @@ El desarrollo de **Spyro The Dragon** ha sido una experiencia enriquecedora, per
 <img src="screenshots/easter_egg.png" alt="Muestra de uno de los Easter Egg" height="600"/>
 
 ### Diálogo "_Acerca de..._"
-<img src="screenshots/about.png" alt="Diálogo "_Acerca de..._"" height="600"/>
+<img src="screenshots/about.png" alt="Diálogo _Acerca de..._" height="600"/>
